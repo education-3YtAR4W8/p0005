@@ -24,58 +24,61 @@
 
 
 <div class="container">
-    <div class="alert alert-danger" role="alert">
-        入力値が不正です。数値を入力してください。
-    </div>
-
-    <div class="row">
-        <div class="col">
-            <input class="w-100 py-3" type="text">
+    <div class="alert alert-danger" role="alert" th:if="${page.alertText} != null" th:text="${page.alertText}"/>
+    <form method="post" action="calc">
+        <div class="row">
+            <div class="col">
+                <input class="w-100 py-3" type="text" name="inputNum" th:value="${page.displayNum} ?: ''">
+                <input type="hidden" name="calculationNum" th:value="${page.calculationNum} ?: ''">
+                <input type="hidden" name="memoryNum" th:value="${page.memoryNum} ?: '0'">
+                <input type="hidden" name="savedCalculationButton" th:value="${page.savedCalculationButton} ?: ''">
+            </div>
         </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col">
-            <button class="btn btn-secondary w-100">MC</button>
+        <div class="row mt-2">
+            <div class="col">
+                <button type="submit" class="btn btn-secondary w-100" name="button" value="MC">MC</button>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-secondary w-100" name="button" value="MR">MR</button>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-secondary w-100" name="button" value="M+">M+</button>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-secondary w-100" name="button" value="M-">M-</button>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-secondary w-100" name="button" value="MS">MS</button>
+            </div>
         </div>
-        <div class="col">
-            <button class="btn btn-secondary w-100">MR</button>
+        <div class="row mt-2">
+            <div class="col">
+                <button type="submit" class="btn btn-primary w-100" name="button" value="+">+</button>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary w-100" name="button" value="-">-</button>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary w-100" name="button" value="*">*</button>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary w-100" name="button" value="/">/</button>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary w-100" name="button" value="=">=</button>
+            </div>
         </div>
-        <div class="col">
-            <button class="btn btn-secondary w-100">M+</button>
+        <div class="row mt-2">
+            <div class="col">
+                <button type="submit" class="btn btn-danger w-100" name="button" value="CE">CE</button>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-danger w-100" name="button" value="C">C</button>
+            </div>
         </div>
-        <div class="col">
-            <button class="btn btn-secondary w-100">M-</button>
-        </div>
-        <div class="col">
-            <button class="btn btn-secondary w-100">MS</button>
-        </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col">
-            <button class="btn btn-primary w-100">+</button>
-        </div>
-        <div class="col">
-            <button class="btn btn-primary w-100">-</button>
-        </div>
-        <div class="col">
-            <button class="btn btn-primary w-100">*</button>
-        </div>
-        <div class="col">
-            <button class="btn btn-primary w-100">/</button>
-        </div>
-        <div class="col">
-            <button class="btn btn-primary w-100">=</button>
-        </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col">
-            <button class="btn btn-danger w-100">CE</button>
-        </div>
-        <div class="col">
-            <button class="btn btn-danger w-100">C</button>
-        </div>
-    </div>
+    </form>
 </div>
+
 
 </body>
 </html>
