@@ -28,54 +28,77 @@
         入力値が不正です。数値を入力してください。
     </div>
 
-    <div class="row">
-        <div class="col">
-            <input class="w-100 py-3" type="text">
+    <form method="post" action="" name="formCalculation">
+        <div class="row">
+            <div class="col">
+                <input class="w-100 py-3" type="text" id="inputTxt" name="inputTxt" value="${page.result != null} ? ${page.result} : ''">
+            </div>
         </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col">
-            <button class="btn btn-secondary w-100">MC</button>
+        <div class="row mt-2">
+            <div class="col">
+                <button class="btn btn-secondary w-100" name="calcMemory" value="MC" onclick="setMemory()">MC</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-secondary w-100" name="calcMemory" value="MR" onclick="setMemory()">MR</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-secondary w-100" name="calcMemory" value="M+" onclick="setMemory()">M+</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-secondary w-100" name="calcMemory" value="M-" onclick="setMemory()">M-</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-secondary w-100" name="calcMemory" value="MS" onclick="setMemory()">MS</button>
+            </div>
         </div>
-        <div class="col">
-            <button class="btn btn-secondary w-100">MR</button>
+        <div class="row mt-2">
+            <div class="col">
+                <button class="btn btn-primary w-100" name="inputOperator" value="+" onclick="setOperator()">+</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-primary w-100" name="inputOperator" value="-" onclick="setOperator()">-</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-primary w-100" name="inputOperator" value="*" onclick="setOperator()">*</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-primary w-100" name="inputOperator" value="/" onclick="setOperator()">/</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-primary w-100" onclick="calcResult()">=</button>
+            </div>
         </div>
-        <div class="col">
-            <button class="btn btn-secondary w-100">M+</button>
+        <div class="row mt-2">
+            <div class="col">
+                <button class="btn btn-danger w-100" onclick="clearDisplay()">CE</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-danger w-100" onclick="clearFormula()">C</button>
+            </div>
         </div>
-        <div class="col">
-            <button class="btn btn-secondary w-100">M-</button>
-        </div>
-        <div class="col">
-            <button class="btn btn-secondary w-100">MS</button>
-        </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col">
-            <button class="btn btn-primary w-100">+</button>
-        </div>
-        <div class="col">
-            <button class="btn btn-primary w-100">-</button>
-        </div>
-        <div class="col">
-            <button class="btn btn-primary w-100">*</button>
-        </div>
-        <div class="col">
-            <button class="btn btn-primary w-100">/</button>
-        </div>
-        <div class="col">
-            <button class="btn btn-primary w-100">=</button>
-        </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col">
-            <button class="btn btn-danger w-100">CE</button>
-        </div>
-        <div class="col">
-            <button class="btn btn-danger w-100">C</button>
-        </div>
-    </div>
+    </form>
 </div>
-
+<script>
+function setMemory(str){
+    document.formCalculation.action = '/calc/memory/';
+    document.formCalculation.submit();
+}
+function setOperator(str){
+    document.formCalculation.action = '/calc/operator/';
+    document.formCalculation.submit();
+}
+function calcResult(str){
+    document.formCalculation.action = '/calc/calculation/';
+    document.formCalculation.submit();
+}
+function clearDisplay(str){
+	var textForm = document.getElementById("inputTxt");
+    textForm.value = '';
+}
+function clearFormula(str){
+    document.formCalculation.action = '/calc/clearFormula/';
+    document.formCalculation.submit();
+}
+</script>
 </body>
 </html>
